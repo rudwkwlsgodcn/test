@@ -57,6 +57,7 @@
             <input type="number" id="guess" min="1" max="100">
             <button onclick="checkGuess()">맞추기</button>
             <p id="result"></p>
+            <button onclick="resetGuessGame()">다시 시작</button>
         </div>
         <div id="rps-game">
             <h2>가위, 바위, 보 게임</h2>
@@ -65,6 +66,7 @@
             <button onclick="playRPS('바위')">바위</button>
             <button onclick="playRPS('보')">보</button>
             <p id="rps-result"></p>
+            <button onclick="resetRPSGame()">다시 시작</button>
         </div>
         <div id="quiz-game">
             <h2>퀴즈 게임</h2>
@@ -73,6 +75,7 @@
             <button onclick="checkQuizAnswer('오답')">HighText Markup Language</button>
             <button onclick="checkQuizAnswer('오답')">Hyperlink and Text Markup Language</button>
             <p id="quiz-result"></p>
+            <button onclick="resetQuizGame()">다시 시작</button>
         </div>
         <div id="tic-tac-toe">
             <h2>틱택토 게임</h2>
@@ -88,6 +91,7 @@
                 <div class="cell" onclick="makeMove(8)"></div>
             </div>
             <p id="tic-tac-toe-result"></p>
+            <button onclick="resetTicTacToe()">다시 시작</button>
         </div>
     </div>
     <script>
@@ -106,6 +110,12 @@
                 result.textContent = "좀 더 작은 숫자입니다.";
                 result.style.color = "red";
             }
+        }
+
+        function resetGuessGame() {
+            randomNumber = Math.floor(Math.random() * 100) + 1;
+            document.getElementById('guess').value = '';
+            document.getElementById('result').textContent = '';
         }
 
         function playRPS(userChoice) {
@@ -128,6 +138,10 @@
             }
         }
 
+        function resetRPSGame() {
+            document.getElementById('rps-result').textContent = '';
+        }
+
         function checkQuizAnswer(answer) {
             let result = document.getElementById('quiz-result');
             if (answer === '정답') {
@@ -137,6 +151,10 @@
                 result.textContent = "아쉽지만, 오답입니다.";
                 result.style.color = "red";
             }
+        }
+
+        function resetQuizGame() {
+            document.getElementById('quiz-result').textContent = '';
         }
 
         let board = ['', '', '', '', '', '', '', '', ''];
@@ -161,6 +179,14 @@
             }
         }
 
+        function resetTicTacToe() {
+            board = ['', '', '', '', '', '', '', '', ''];
+            currentPlayer = 'X';
+            gameActive = true;
+            document.querySelectorAll('.cell').forEach(cell => cell.textContent = '');
+            document.getElementById('tic-tac-toe-result').textContent = '';
+        }
+
         function checkWinner() {
             const winningCombinations = [
                 [0, 1, 2],
@@ -179,6 +205,4 @@
                 });
             });
         }
-    </script>
-</body>
-</html>
+   
