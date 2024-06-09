@@ -1,118 +1,111 @@
-{\rtf1\ansi\ansicpg949\cocoartf2761
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>오빠의 첫 웹페이지</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        #game, #rps-game, #quiz-game {
+            margin-top: 20px;
+        }
+        #result, #rps-result, #quiz-result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>오빠의 첫 웹페이지에 오신 것을 환영합니다!</h1>
+        <p>이 페이지는 HTML과 CSS로 만들어졌어요. 앞으로 더 많은 기능을 추가할 예정입니다!</p>
+        <button onclick="alert('안녕하세요!')">클릭해보세요</button>
+        <div id="game">
+            <h2>숫자 맞추기 게임</h2>
+            <p>1부터 100 사이의 숫자를 맞춰보세요!</p>
+            <input type="number" id="guess" min="1" max="100">
+            <button onclick="checkGuess()">맞추기</button>
+            <p id="result"></p>
+        </div>
+        <div id="rps-game">
+            <h2>가위, 바위, 보 게임</h2>
+            <p>가위, 바위, 보 중 하나를 선택하세요!</p>
+            <button onclick="playRPS('가위')">가위</button>
+            <button onclick="playRPS('바위')">바위</button>
+            <button onclick="playRPS('보')">보</button>
+            <p id="rps-result"></p>
+        </div>
+        <div id="quiz-game">
+            <h2>퀴즈 게임</h2>
+            <p>다음 중 HTML의 뜻은 무엇일까요?</p>
+            <button onclick="checkQuizAnswer('정답')">HyperText Markup Language</button>
+            <button onclick="checkQuizAnswer('오답')">HighText Markup Language</button>
+            <button onclick="checkQuizAnswer('오답')">Hyperlink and Text Markup Language</button>
+            <p id="quiz-result"></p>
+        </div>
+    </div>
+    <script>
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+        
+        function checkGuess() {
+            let userGuess = document.getElementById('guess').value;
+            let result = document.getElementById('result');
+            if (userGuess == randomNumber) {
+                result.textContent = "축하합니다! 숫자를 맞췄어요!";
+                result.style.color = "green";
+            } else if (userGuess < randomNumber) {
+                result.textContent = "좀 더 큰 숫자입니다.";
+                result.style.color = "red";
+            } else {
+                result.textContent = "좀 더 작은 숫자입니다.";
+                result.style.color = "red";
+            }
+        }
 
-\f0\fs24 \cf0 <!DOCTYPE html>\
-<html lang="ko">\
-<head>\
-    <meta charset="UTF-8">\
-    <title>\uc0\u50724 \u48736 \u51032  \u52395  \u50937 \u54168 \u51060 \u51648 </title>\
-    <style>\
-        body \{\
-            font-family: Arial, sans-serif;\
-            background-color: #f0f0f0;\
-            margin: 0;\
-            padding: 0;\
-        \}\
-        .container \{\
-            max-width: 800px;\
-            margin: 50px auto;\
-            padding: 20px;\
-            background-color: white;\
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\
-        \}\
-        h1 \{\
-            color: #333;\
-        \}\
-        #game, #rps-game, #quiz-game \{\
-            margin-top: 20px;\
-        \}\
-        #result, #rps-result, #quiz-result \{\
-            margin-top: 10px;\
-            font-weight: bold;\
-        \}\
-    </style>\
-</head>\
-<body>\
-    <div class="container">\
-        <h1>\uc0\u50724 \u48736 \u51032  \u52395  \u50937 \u54168 \u51060 \u51648 \u50640  \u50724 \u49888  \u44163 \u51012  \u54872 \u50689 \u54633 \u45768 \u45796 !</h1>\
-        <p>\uc0\u51060  \u54168 \u51060 \u51648 \u45716  HTML\u44284  CSS\u47196  \u47564 \u46308 \u50612 \u51276 \u50612 \u50836 . \u50526 \u51004 \u47196  \u45908  \u47566 \u51008  \u44592 \u45733 \u51012  \u52628 \u44032 \u54624  \u50696 \u51221 \u51077 \u45768 \u45796 !</p>\
-        <button onclick="alert('\uc0\u50504 \u45397 \u54616 \u49464 \u50836 !')">\u53364 \u47533 \u54644 \u48372 \u49464 \u50836 </button>\
-        <div id="game">\
-            <h2>\uc0\u49707 \u51088  \u47582 \u52628 \u44592  \u44172 \u51076 </h2>\
-            <p>1\uc0\u48512 \u53552  100 \u49324 \u51060 \u51032  \u49707 \u51088 \u47484  \u47582 \u52656 \u48372 \u49464 \u50836 !</p>\
-            <input type="number" id="guess" min="1" max="100">\
-            <button onclick="checkGuess()">\uc0\u47582 \u52628 \u44592 </button>\
-            <p id="result"></p>\
-        </div>\
-        <div id="rps-game">\
-            <h2>\uc0\u44032 \u50948 , \u48148 \u50948 , \u48372  \u44172 \u51076 </h2>\
-            <p>\uc0\u44032 \u50948 , \u48148 \u50948 , \u48372  \u51473  \u54616 \u45208 \u47484  \u49440 \u53469 \u54616 \u49464 \u50836 !</p>\
-            <button onclick="playRPS('\uc0\u44032 \u50948 ')">\u44032 \u50948 </button>\
-            <button onclick="playRPS('\uc0\u48148 \u50948 ')">\u48148 \u50948 </button>\
-            <button onclick="playRPS('\uc0\u48372 ')">\u48372 </button>\
-            <p id="rps-result"></p>\
-        </div>\
-        <div id="quiz-game">\
-            <h2>\uc0\u53300 \u51592  \u44172 \u51076 </h2>\
-            <p>\uc0\u45796 \u51020  \u51473  HTML\u51032  \u46907 \u51008  \u47924 \u50631 \u51068 \u44620 \u50836 ?</p>\
-            <button onclick="checkQuizAnswer('\uc0\u51221 \u45813 ')">HyperText Markup Language</button>\
-            <button onclick="checkQuizAnswer('\uc0\u50724 \u45813 ')">HighText Markup Language</button>\
-            <button onclick="checkQuizAnswer('\uc0\u50724 \u45813 ')">Hyperlink and Text Markup Language</button>\
-            <p id="quiz-result"></p>\
-        </div>\
-    </div>\
-    <script>\
-        let randomNumber = Math.floor(Math.random() * 100) + 1;\
-        \
-        function checkGuess() \{\
-            let userGuess = document.getElementById('guess').value;\
-            let result = document.getElementById('result');\
-            if (userGuess == randomNumber) \{\
-                result.textContent = "\uc0\u52629 \u54616 \u54633 \u45768 \u45796 ! \u49707 \u51088 \u47484  \u47582 \u52676 \u50612 \u50836 !";\
-                result.style.color = "green";\
-            \} else if (userGuess < randomNumber) \{\
-                result.textContent = "\uc0\u51328  \u45908  \u53360  \u49707 \u51088 \u51077 \u45768 \u45796 .";\
-                result.style.color = "red";\
-            \} else \{\
-                result.textContent = "\uc0\u51328  \u45908  \u51089 \u51008  \u49707 \u51088 \u51077 \u45768 \u45796 .";\
-                result.style.color = "red";\
-            \}\
-        \}\
-\
-        function playRPS(userChoice) \{\
-            const choices = ['\uc0\u44032 \u50948 ', '\u48148 \u50948 ', '\u48372 '];\
-            const computerChoice = choices[Math.floor(Math.random() * 3)];\
-            let result = document.getElementById('rps-result');\
-            if (userChoice === computerChoice) \{\
-                result.textContent = `\uc0\u48708 \u44220 \u49845 \u45768 \u45796 ! \u52980 \u54504 \u53552 \u46020  $\{computerChoice\}\u47484  \u49440 \u53469 \u54664 \u49845 \u45768 \u45796 .`;\
-                result.style.color = "blue";\
-            \} else if (\
-                (userChoice === '\uc0\u44032 \u50948 ' && computerChoice === '\u48372 ') ||\
-                (userChoice === '\uc0\u48148 \u50948 ' && computerChoice === '\u44032 \u50948 ') ||\
-                (userChoice === '\uc0\u48372 ' && computerChoice === '\u48148 \u50948 ')\
-            ) \{\
-                result.textContent = `\uc0\u51060 \u44220 \u49845 \u45768 \u45796 ! \u52980 \u54504 \u53552 \u45716  $\{computerChoice\}\u47484  \u49440 \u53469 \u54664 \u49845 \u45768 \u45796 .`;\
-                result.style.color = "green";\
-            \} else \{\
-                result.textContent = `\uc0\u51276 \u49845 \u45768 \u45796 ! \u52980 \u54504 \u53552 \u45716  $\{computerChoice\}\u47484  \u49440 \u53469 \u54664 \u49845 \u45768 \u45796 .`;\
-                result.style.color = "red";\
-            \}\
-        \}\
-\
-        function checkQuizAnswer(answer) \{\
-            let result = document.getElementById('quiz-result');\
-            if (answer === '\uc0\u51221 \u45813 ') \{\
-                result.textContent = "\uc0\u52629 \u54616 \u54633 \u45768 \u45796 ! \u51221 \u45813 \u51077 \u45768 \u45796 !";\
-                result.style.color = "green";\
-            \} else \{\
-                result.textContent = "\uc0\u50500 \u49789 \u51648 \u47564 , \u50724 \u45813 \u51077 \u45768 \u45796 .";\
-                result.style.color = "red";\
-            \}\
-        \}\
-    </script>\
-</body>\
-</html>}
+        function playRPS(userChoice) {
+            const choices = ['가위', '바위', '보'];
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+            let result = document.getElementById('rps-result');
+            if (userChoice === computerChoice) {
+                result.textContent = `비겼습니다! 컴퓨터도 ${computerChoice}를 선택했습니다.`;
+                result.style.color = "blue";
+            } else if (
+                (userChoice === '가위' && computerChoice === '보') ||
+                (userChoice === '바위' && computerChoice === '가위') ||
+                (userChoice === '보' && computerChoice === '바위')
+            ) {
+                result.textContent = `이겼습니다! 컴퓨터는 ${computerChoice}를 선택했습니다.`;
+                result.style.color = "green";
+            } else {
+                result.textContent = `졌습니다! 컴퓨터는 ${computerChoice}를 선택했습니다.`;
+                result.style.color = "red";
+            }
+        }
+
+        function checkQuizAnswer(answer) {
+            let result = document.getElementById('quiz-result');
+            if (answer === '정답') {
+                result.textContent = "축하합니다! 정답입니다!";
+                result.style.color = "green";
+            } else {
+                result.textContent = "아쉽지만, 오답입니다.";
+                result.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
